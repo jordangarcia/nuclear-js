@@ -14,7 +14,13 @@
     "grunt-webpack": "^1.0.8",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-concurrent": "^1.0.0",
-    "grunt-contrib-connect": "^0.10.1"
+    "grunt-contrib-connect": "^0.10.1",
+    "remarkable": "^1.6.0",
+    "front-matter": "^1.0.0",
+    "glob": "^5.0.10",
+    "async": "^1.2.1",
+    "through": "^2.3.7",
+    "mkdirp": "^0.5.1"
   },
   "dependencies": {
     "react": "^0.13.3",
