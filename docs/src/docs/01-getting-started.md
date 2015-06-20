@@ -24,7 +24,7 @@ In this tutorial we will create a Nuclear flux system to show a list of products
 
 3. Create a **ProductStore** and **ShoppingCartStore**
 
-4. Create **getters** to transform and compose our store data into a consumable format for the UI
+4. Create **getters** to combine and transform our store data into a consumable format for the UI
 
 5. Hook everything up to React
 
@@ -294,6 +294,16 @@ export default React.createClass({
 });
 ```
 
+### Binding application state to components
+
+Every Nuclear Reactor comes with `reactor.ReactMixin` to easily create an alway-in-sync binding between any KeyPath or Getter value
+and a React component's state.
+
+The ability to observe any piece of composite data is immensely powerful and trivializes a lot of what other frameworks work hard to solve.
+
+To use simply include the `reactor.ReactMixin` and implement the `getDataBindings()` function that returns an object of state properties
+to `KeyPath` or `Getter`.  Nuclear will take care of the initial sync, observation and destroying the subscription when on `componentWillUnmount`.
+
 #### `components/CartContainer.jsx`
 
 ```javascript
@@ -329,4 +339,55 @@ export default React.createClass({
 })
 ```
 
+#### `components/ProductsContainer.jsx`
+
+```javascript
+import React from 'react'
+
+import ProductItem from '../../../common/components/ProductItem.jsx'
+import ProductsList from '../../../common/components/ProductsList.jsx'
+
+import reactor from '../reactor'
+import getters from '../getters'
+import actions from '../actions'
+
+const ProductItemContainer = React.createClass({
+  onAddToCartClicked() {
+    // we will implement this in the next section
+  },
+
+  render() {
+    return (
+      <ProductItem product={this.props.product} onAddToCartClicked={this.onAddToCartClicked} />
+    )
+  }
+})
+
+export default React.createClass({
+  mixins: [reactor.ReactMixin],
+
+  getDataBindings() {
+    return {
+      products: getters.products,
+    }
+  },
+
+  render: function () {
+    return (
+      <ProductsList title="Flux Shop Demo (NuclearJS)">
+        {this.state.products.map(product => {
+          return <ProductItemContainer key={product.get('id')} product={product.toJS()} />
+        })}
+      </ProductsList>
+    )
+  },
+})
+```
+
+## Final thoughts
+
+There you have it, we've created a fully functioning Nuclear Reactor to manage our application's state.  By this point the power of
+NuclearJS should be apparent.
+
+So go start building something, or if you want to see more examples checkout the next section [Async Actions and Optimistic Updates](./docs/02-optimistic-updates.html).
 
