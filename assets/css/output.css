@@ -7442,18 +7442,20 @@ pre code.hljs {
   -moz-box-shadow: none;
   box-shadow: none; }
 
-.docs-page h2 {
-  margin-top: 3.0324rem; }
+.docs-page {
+  padding-bottom: 3em; }
+  .docs-page h2 {
+    margin-top: 3.0324rem; }
+  .docs-page h3 {
+    margin-top: 2.1812rem; }
+  .docs-page h4 {
+    font-weight: 600;
+    margin-top: 1.33rem; }
+  .docs-page--sidebar {
+    padding-top: 26px !important; }
 
-.docs-page h3 {
-  margin-top: 2.1812rem; }
-
-.docs-page h4 {
-  font-weight: 600;
-  margin-top: 1.33rem; }
-
-.docs-page--sidebar {
-  padding-top: 26px !important; }
+.docs-page--sidebar h3 {
+  margin-top: 0; }
 
 .sidebar-links--item {
   line-height: 2em; }
