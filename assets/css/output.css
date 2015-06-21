@@ -7458,4 +7458,5 @@ pre code.hljs {
   margin-top: 0; }
 
 .sidebar-links--item {
-  line-height: 2em; }
+  line-height: 1.2em;
+  margin-bottom: 1em; }
